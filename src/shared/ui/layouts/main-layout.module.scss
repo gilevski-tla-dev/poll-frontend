@@ -1,0 +1,27 @@
+@use "@/shared/styles/variables" as *;
+
+.main_layout {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-bg;
+  height: 85vh;
+  padding: $space-2 $space-2;
+  border-top-left-radius: $radius-lg;
+  border-top-right-radius: $radius-lg;
+  overflow: hidden;
+
+  // Анимация появления
+  animation: slideInFromTop 0.4s ease forwards;
+  transform: translateY(100%);
+}
+
+// Определение анимации
+@keyframes slideInFromTop {
+  to {
+    transform: translateY(0);
+  }
+}

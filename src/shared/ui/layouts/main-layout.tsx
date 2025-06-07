@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import styles from "./main-layout.module.css";
+import styles from "./main-layout.module.scss";
+
 type Props = {
   children: ReactNode;
 };

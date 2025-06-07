@@ -2,7 +2,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -11,6 +10,13 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: ["c07d-194-87-58-32.ngrok-free.app"],
+    allowedHosts: ["34a1-194-87-58-32.ngrok-free.app"],
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "@/shared/styles/variables" as *;`,
+      },
+    },
   },
 });
