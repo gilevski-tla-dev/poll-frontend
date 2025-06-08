@@ -1,14 +1,16 @@
 @use "@/shared/styles/variables" as *;
 
-.main_layout {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.app {
   display: flex;
   flex-direction: column;
+}
+
+.main_layout {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15vh;
+  min-height: calc(100vh - 15vh);
   background-color: $color-bg;
-  height: 85vh;
   padding: $space-2 $space-2;
   border-top-left-radius: $radius-lg;
   border-top-right-radius: $radius-lg;

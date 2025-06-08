@@ -6,5 +6,9 @@ type Props = {
 };
 
 export const MainLayout = ({ children }: Props) => {
-  return <div className={styles.main_layout}>{children}</div>;
+  return (
+    <div className={styles.app}>
+      <div className={styles.main_layout}>{children}</div>
+    </div>
+  );
 };

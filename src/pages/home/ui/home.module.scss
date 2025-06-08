@@ -5,3 +5,9 @@
   font-size: 32px;
   margin: $space-2 $space-2;
 }
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}

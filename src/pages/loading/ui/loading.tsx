@@ -1,7 +1,7 @@
 import styles from "./loading.module.scss";
-import Pollik from "@/assets/pollik.svg";
+import Pollik from "@/shared/assets/pollik.svg";
 
-const Loading = () => {
+export const Loading = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.pollik_container}>
@@ -16,5 +16,3 @@ const Loading = () => {
     </div>
   );
 };
-
-export default Loading;
