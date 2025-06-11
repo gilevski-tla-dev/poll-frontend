@@ -1,4 +1,5 @@
 interface TelegramWebApp {
+  initData: string;
   ready: () => void;
   close: () => void;
   BackButton: {

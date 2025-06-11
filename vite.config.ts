@@ -10,7 +10,7 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: ["7b47-194-87-58-32.ngrok-free.app"],
+    allowedHosts: ["f2cc-194-87-58-32.ngrok-free.app"],
   },
   css: {
     preprocessorOptions: {
