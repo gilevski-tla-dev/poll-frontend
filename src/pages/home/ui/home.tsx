@@ -1,4 +1,4 @@
-import { MainLayout } from "@/shared/ui";
+import { MainLayout, NavBar } from "@/shared/ui";
 import styles from "./home.module.scss";
 import { PollCard } from "@/entities/poll";
 import { useEffect } from "react";
@@ -11,23 +11,26 @@ const Home = () => {
   }, []);
 
   return (
-    <MainLayout>
-      <h1 className={styles.title}>Опросы</h1>
+    <>
+      <MainLayout>
+        <h1 className={styles.title}>Опросы</h1>
 
-      <div className={styles.list}>
-        <PollCard />
-        <PollCard />
-        <PollCard />
-        <PollCard />
-        <PollCard />
-        <PollCard />
-        <PollCard />
-        <PollCard />
-        <PollCard />
-        <PollCard />
-        <PollCard />
-      </div>
-    </MainLayout>
+        <div className={styles.list}>
+          <PollCard />
+          <PollCard />
+          <PollCard />
+          <PollCard />
+          <PollCard />
+          <PollCard />
+          <PollCard />
+          <PollCard />
+          <PollCard />
+          <PollCard />
+          <PollCard />
+        </div>
+      </MainLayout>
+      <NavBar />
+    </>
   );
 };
 

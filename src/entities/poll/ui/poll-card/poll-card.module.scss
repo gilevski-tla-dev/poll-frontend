@@ -34,7 +34,13 @@
       position: absolute;
       left: 10px;
       bottom: 10px;
+      transition: transform 0.1s ease-in;
+
+      &:active {
+        transform: scale(0.95);
+      }
     }
+
     .count {
       position: absolute;
       right: 12px;

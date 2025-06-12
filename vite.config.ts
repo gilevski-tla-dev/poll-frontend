@@ -9,9 +9,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  server: {
-    allowedHosts: ["f2cc-194-87-58-32.ngrok-free.app"],
-  },
+  server: { allowedHosts: true },
   css: {
     preprocessorOptions: {
       scss: {

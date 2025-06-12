@@ -1,0 +1,29 @@
+@use "@/shared/styles/variables" as *;
+
+.container {
+  height: 65px;
+  position: fixed;
+  bottom: $space-2;
+  left: $space-3;
+  right: $space-3;
+  z-index: 1000;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(95, 95, 95, 0.414);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: inset 1px 1px 12px #0000004b, inset -1px -1px 12px #0000004b;
+
+  //   box-shadow: 1px 1px 12px #0000004b, /* тень снизу */ -1px -1px 12px #0000004b; /* свет сверху */
+
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform;
+}
+
+.hidden {
+  transform: translateY(90%);
+  align-items: self-start;
+}
