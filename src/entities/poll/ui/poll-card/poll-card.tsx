@@ -1,11 +1,14 @@
 import { MiniButton } from "@/shared/ui";
 import styles from "./poll-card.module.scss";
+import { Link } from "react-router-dom";
 
 type Props = {
   onClick?: () => void;
+  id: number;
+  title: string;
 };
 
-export const PollCard = ({ onClick }: Props) => {
+export const PollCard = ({ id, title, onClick }: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.image}>
@@ -15,9 +18,11 @@ export const PollCard = ({ onClick }: Props) => {
         />
       </div>
       <div className={styles.info}>
-        <h1 className={styles.title}>Анкета для исследования рынка</h1>
+        <h1 className={styles.title}>{title}</h1>
         <div className={styles.button}>
-          <MiniButton text="Пройти" onClick={onClick} />
+          <Link to={`/poll/${id}`}>
+            <MiniButton text="Пройти" onClick={onClick} />
+          </Link>
         </div>
         <p className={styles.count}>7 вопросов</p>
       </div>
