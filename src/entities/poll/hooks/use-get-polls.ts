@@ -1,13 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { baseURL } from "@/shared/api/baseURL";
-
-const getPolls = async () => {
-  const response = await baseURL.get(`/poll`);
-  return response.data;
-};
+import { getPolls } from "../api/get-polls";
 
 export const useGetPolls = () =>
   useQuery({
-    queryKey: ["employees"],
+    queryKey: ["polls"],
     queryFn: () => getPolls(),
   });

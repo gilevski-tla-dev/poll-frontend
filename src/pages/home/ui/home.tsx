@@ -1,18 +1,18 @@
 import { MainLayout, NavBar } from "@/shared/ui";
 import styles from "./home.module.scss";
 import { PollCard } from "@/entities/poll";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useGetPolls } from "@/entities/poll/hooks/use-get-polls";
 import { type Poll } from "@/entities/poll/model/store";
 
 const Home = () => {
-  const tg = window.Telegram.WebApp;
+  // const tg = window.Telegram.WebApp;
 
   const { isLoading, data } = useGetPolls();
-  useEffect(() => {
-    console.log(tg.initData);
-  }, []);
-  console.log(isLoading);
+  // useEffect(() => {
+  //   console.log(tg.initData);
+  // }, []);
+  // console.log(isLoading);
   return (
     <>
       <MainLayout>
