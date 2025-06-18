@@ -4,11 +4,11 @@ import { AppInitProvider } from "./providers/app-init-provider";
 
 const App = () => {
   return (
-    <AppInitProvider>
-      <QueryProvider>
+    <QueryProvider>
+      <AppInitProvider>
         <AppRouter />
-      </QueryProvider>
-    </AppInitProvider>
+      </AppInitProvider>
+    </QueryProvider>
   );
 };
 

@@ -4,7 +4,7 @@ import { api } from "../instanсe";
 export const initAuthInterceptor = () => {
   // Request interceptor - добавляет токен к запросам
   api.interceptors.request.use((config) => {
-    const { accessToken } = useAuthStore.getState();
+    const accessToken = useAuthStore((state) => state.accessToken);
 
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
