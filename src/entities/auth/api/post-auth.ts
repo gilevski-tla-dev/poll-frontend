@@ -1,11 +1,11 @@
 import { api } from "@/shared/api";
 
-interface AuthParams {
+export interface AuthParams {
   initData: string;
 }
 
 export interface AuthResponse {
-  accessToken: string;
+  access_token: string;
 }
 
 export const postAuth = async ({

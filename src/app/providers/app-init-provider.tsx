@@ -1,5 +1,5 @@
-import { useAuth } from "@/entities/auth/hooks/use-auth";
 import { useAuthStore } from "@/entities/auth/model/store";
+import axios from "axios";
 import { useEffect, type ReactNode } from "react";
 
 interface Props {
@@ -13,26 +13,26 @@ export const AppInitProvider = ({ children }: Props) => {
   const clearAccessToken = useAuthStore((state) => state.clearAccessToken);
   const initData = window.Telegram?.WebApp?.initData;
 
-  const { data, isSuccess, isError } = useAuth(initData);
-
   useEffect(() => {
-    console.log(initData);
-    console.log(accessToken);
+    axios
+      .post("http://localhost:3000/api/auth", {
+        initData,
+      })
+      .then((response) => {
+        setAccessToken(response.data.access_token);
+      })
+      .catch(() => {
+        clearAccessToken();
+      });
+    console.log("initData: ", initData);
+    console.log("accessToken: ", accessToken);
 
-    if (isSuccess && data) {
-      setAccessToken(data.accessToken);
-    }
-
-    if (isError) {
-      clearAccessToken();
-    }
-
-    return () => {
-      clearAccessToken();
-    };
+    // return () => {
+    //   clearAccessToken();
+    // };
 
     // TODO Здесь будет происходить то что нужно при инициализации приложения
-  }, [isSuccess, isError, data]);
+  }, [accessToken, clearAccessToken, initData, setAccessToken]);
 
   return <>{children}</>;
 };
