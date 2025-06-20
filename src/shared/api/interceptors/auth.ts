@@ -1,5 +1,5 @@
 import { useAuthStore } from "@/entities/auth/model/store";
-import { api } from "../instanсe";
+import { api } from "../instance";
 
 export const initAuthInterceptor = () => {
   // Request interceptor - добавляет токен к запросам

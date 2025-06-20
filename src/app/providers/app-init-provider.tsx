@@ -12,6 +12,7 @@ export const AppInitProvider = ({ children }: Props) => {
   const initData = window.Telegram?.WebApp?.initData;
 
   useEffect(() => {
+    // fetch("http://localhost:3000/auth");
     postAuth({ initData })
       .then((response) => {
         setAccessToken(response.access_token);
@@ -20,9 +21,9 @@ export const AppInitProvider = ({ children }: Props) => {
         clearAccessToken();
       });
 
-    return () => {
-      clearAccessToken();
-    };
+    // return () => {
+    //   clearAccessToken();
+    // };
 
     // TODO Здесь будет происходить то что нужно при инициализации приложения
   }, [clearAccessToken, initData, setAccessToken]);

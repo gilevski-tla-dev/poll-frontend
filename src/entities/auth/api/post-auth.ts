@@ -1,4 +1,4 @@
-import { api } from "@/shared/api";
+import { api } from "@/shared/api/instance";
 
 export interface AuthParams {
   initData: string;

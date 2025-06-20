@@ -1,4 +1,4 @@
-import { api } from "../instanсe";
+import { api } from "../instance";
 
 export const initErrorInterceptor = () => {
   api.interceptors.response.use(
