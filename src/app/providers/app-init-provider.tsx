@@ -1,6 +1,8 @@
 import { postAuth } from "@/entities/auth/api/post-auth";
 import { useAuthStore } from "@/entities/auth/model/store";
+import { getInitData, isTelegramAvailable } from "@/shared/lib/telegram/webapp";
 import { useEffect, type ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   children: ReactNode;
@@ -9,24 +11,41 @@ interface Props {
 export const AppInitProvider = ({ children }: Props) => {
   const setAccessToken = useAuthStore((state) => state.setAccessToken);
   const clearAccessToken = useAuthStore((state) => state.clearAccessToken);
-  const initData = window.Telegram?.WebApp?.initData;
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // fetch("http://localhost:3000/auth");
-    postAuth({ initData })
-      .then((response) => {
-        setAccessToken(response.access_token);
-      })
-      .catch(() => {
+    const isAvailable = isTelegramAvailable();
+
+    if (!isAvailable) {
+      clearAccessToken();
+      navigate("/not-telegram");
+      return;
+    }
+    const initData = getInitData();
+    let isMounted = true;
+
+    const initAuth = async () => {
+      if (!initData) {
         clearAccessToken();
-      });
+        return;
+      }
 
-    // return () => {
-    //   clearAccessToken();
-    // };
+      try {
+        const { access_token } = await postAuth({ initData });
+        if (isMounted) setAccessToken(access_token);
+      } catch (error) {
+        console.error("Auth failed", error);
+        if (isMounted) clearAccessToken();
+      }
+    };
 
-    // TODO Здесь будет происходить то что нужно при инициализации приложения
-  }, [clearAccessToken, initData, setAccessToken]);
+    initAuth();
+
+    return () => {
+      isMounted = false;
+      clearAccessToken();
+    };
+  }, [clearAccessToken, setAccessToken, navigate]);
 
   return <>{children}</>;
 };
