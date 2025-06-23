@@ -1,6 +1,16 @@
-import { baseURL } from "@/shared/api";
+import { api } from "@/shared/api/instance";
 
-export const getPolls = async () => {
-  const response = await baseURL.get(`/user/auth`);
+export interface AuthParams {
+  initData: string;
+}
+
+export interface AuthResponse {
+  access_token: string;
+}
+
+export const postAuth = async ({
+  initData,
+}: AuthParams): Promise<AuthResponse> => {
+  const response = await api.post<AuthResponse>("/auth", { initData });
   return response.data;
 };

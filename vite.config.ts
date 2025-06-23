@@ -10,6 +10,7 @@ export default defineConfig({
     },
   },
   server: { allowedHosts: true },
+
   css: {
     preprocessorOptions: {
       scss: {

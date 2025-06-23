@@ -1,6 +1,6 @@
 @use "@/shared/styles/variables" as *;
 
-.wrapper {
+.container {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -8,6 +8,7 @@
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
+  position: relative;
 
   .info {
     position: relative;
@@ -30,5 +31,14 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
+  }
+
+  .button {
+    position: fixed;
+    bottom: $space-2;
+    left: $space-3;
+    right: $space-3;
+    background-color: #229ed9;
+    border-radius: $space-3;
   }
 }

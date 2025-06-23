@@ -1,3 +1,4 @@
 export { MainLayout } from "./layouts/main-layout";
 export { MiniButton } from "./mini-button/mini-button";
 export { NavBar } from "./nav-bar/nav-bar";
+export {Pollik} from './pollik/pollik'
