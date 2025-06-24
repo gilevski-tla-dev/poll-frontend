@@ -1,31 +1,52 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./nav-bar.module.scss";
 
-export const NavBar = () => {
-  const [hidden, setHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+export type NavItem = {
+  icon: string;
+  text: string;
+  route: string;
+};
+
+type Props = {
+  items: NavItem[];
+};
+
+export const NavBar = ({ items }: Props) => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > lastScrollY + 10) {
-        setHidden(true); // Прокрутка вниз
-      } else if (currentScrollY < lastScrollY - 10) {
-        setHidden(false); // Прокрутка вверх
+    const currentPath = location.pathname;
+    const activeIndex = items.findIndex((item) => {
+      if (item.route === "/") {
+        return currentPath === "/";
       }
+      return currentPath.startsWith(item.route);
+    });
+    setSelectedIndex(activeIndex >= 0 ? activeIndex : null);
+  }, [location.pathname, items]);
 
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  const handleSelect = (index: number) => {
+    setSelectedIndex(index);
+    navigate(items[index].route);
+  };
 
   return (
-    <div className={`${styles.container} ${hidden ? styles.hidden : ""}`}>
-      NavBar
+    <div className={styles.container}>
+      {items.map((item, index) => (
+        <div
+          key={index}
+          className={`${styles.elem} ${
+            selectedIndex === index ? styles.selected : ""
+          }`}
+          onClick={() => handleSelect(index)}
+        >
+          <img src={item.icon} alt={item.text} />
+          <p>{item.text}</p>
+        </div>
+      ))}
     </div>
   );
 };

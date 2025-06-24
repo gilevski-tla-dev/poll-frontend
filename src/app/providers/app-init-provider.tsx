@@ -18,7 +18,8 @@ export const AppInitProvider = ({ children }: Props) => {
 
     if (!isAvailable) {
       clearAccessToken();
-      navigate("/not-telegram");
+      // TODO расскоментировать для работы в тг
+      // navigate("/not-telegram");
       return;
     }
     const initData = getInitData();

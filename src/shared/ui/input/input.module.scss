@@ -1,0 +1,23 @@
+@use "@/shared/styles/variables" as *;
+
+.input {
+  height: 53px;
+  padding-left: $space-2;
+  padding-right: $space-2;
+  border-radius: $space-3;
+  font-size: 20px;
+  border: 1px solid hsla(0, 0%, 0%, 0.15);
+  box-shadow: inset 0 0 4px 1px rgba(0, 0, 0, 0.15);
+
+  transition: border 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:focus {
+    outline: none;
+    border: 2px solid #917d64cc;
+    box-shadow: inset 0 0 4px 1px #916464cc;
+  }
+
+  &::placeholder {
+    color: #a7a7a7;
+  }
+}
