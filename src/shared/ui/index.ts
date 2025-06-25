@@ -5,3 +5,4 @@ export { NavBar } from "./nav-bar/nav-bar";
 export { Pollik } from "./pollik/pollik";
 export { Input } from "./input/input";
 export { Button } from "./button/button";
+export { Textarea } from "./textarea/textarea";

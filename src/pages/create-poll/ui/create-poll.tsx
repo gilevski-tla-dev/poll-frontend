@@ -1,4 +1,4 @@
-import { Button, FullScreenLayout, Input } from "@/shared/ui";
+import { Button, FullScreenLayout, Input, Textarea } from "@/shared/ui";
 import styles from "./create-poll.module.scss";
 
 const CreatePoll = () => {
@@ -6,7 +6,8 @@ const CreatePoll = () => {
     <FullScreenLayout>
       <h1 className={styles.title}>Создание опроса</h1>
       <Input placeholder="Название" />
-      <Button variant="danger">Создать</Button>
+      <Textarea placeholder="Описание" />
+      <Button variant="secondary">Загрузить фото</Button>
     </FullScreenLayout>
   );
 };

@@ -10,8 +10,6 @@
   color: $color-text;
   box-shadow: 0px 2px 3px 0px $color-shadow;
   cursor: pointer;
-  margin-top: auto;
-  margin-bottom: 150px;
 
   transition: box-shadow 0.1s ease-in-out, transform 0.1s ease-in-out,
     background-color 0.1s ease-in-out;
@@ -32,7 +30,7 @@
 
   // Второй вариант (secondary)
   &--secondary {
-    background-color: #4a4a4a;
+    background-color: #1e1e1e;
 
     &:active {
       background-color: #2a2a2a;

@@ -1,0 +1,22 @@
+.textarea {
+  padding: $space-2;
+  border-radius: $space-3;
+  font-size: 20px;
+  border: 1px solid hsla(0, 0%, 0%, 0.15);
+  box-shadow: inset 0 0 4px 1px rgba(0, 0, 0, 0.15);
+  font-family: "Jost", sans-serif;
+  resize: none;
+  overflow: hidden;
+
+  transition: border 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:focus {
+    outline: none;
+    border: 2px solid #917d64cc;
+    box-shadow: inset 0 0 4px 1px #916464cc;
+  }
+
+  &::placeholder {
+    color: #a7a7a7;
+  }
+}

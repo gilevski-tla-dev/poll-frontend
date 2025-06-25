@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 import styles from "./button.module.scss";
 
-type Props = {
+type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   variant: "primary" | "secondary" | "danger";
 };
