@@ -16,7 +16,7 @@
 
   &:active {
     box-shadow: inset 0px 1px 3px 2px $color-shadow;
-    transform: translateY(2px);
+    transform: scale(0.98);
   }
 
   // Стили по умолчанию (primary)

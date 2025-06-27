@@ -4,18 +4,21 @@ import {
   useCallback,
   type TextareaHTMLAttributes,
 } from "react";
+import { clsx } from "clsx";
 import styles from "./textarea.module.scss";
 
-type Props = TextareaHTMLAttributes<HTMLTextAreaElement>;
+type Props = TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  className?: string;
+};
 
-export const Textarea = ({ ...props }: Props) => {
+export const Textarea = ({ className, ...props }: Props) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const resizeTextarea = useCallback(() => {
     const el = textareaRef.current;
     if (el) {
-      el.style.height = "auto"; // сброс текущей высоты
-      el.style.height = `${el.scrollHeight}px`; // установка новой высоты
+      el.style.height = "auto";
+      el.style.height = `${el.scrollHeight}px`;
     }
   }, []);
 
@@ -29,9 +32,9 @@ export const Textarea = ({ ...props }: Props) => {
       ref={textareaRef}
       onInput={(e) => {
         resizeTextarea();
-        props.onInput?.(e); // вызвать внешний обработчик, если передан
+        props.onInput?.(e);
       }}
-      className={styles.textarea}
+      className={clsx(styles.textarea, className)}
     />
   );
 };
