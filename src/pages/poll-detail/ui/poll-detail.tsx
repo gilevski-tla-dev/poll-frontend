@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-export const PollDetail = () => {
+const PollDetail = () => {
   const { id } = useParams();
 
   return (
@@ -10,3 +10,4 @@ export const PollDetail = () => {
     </div>
   );
 };
+export default PollDetail;

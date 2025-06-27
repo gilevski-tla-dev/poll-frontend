@@ -1,0 +1,50 @@
+.button {
+  height: 52px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  font-weight: 500;
+  font-size: 16px;
+  color: $color-text;
+  box-shadow: 0px 2px 3px 0px $color-shadow;
+  cursor: pointer;
+
+  transition: box-shadow 0.1s ease-in-out, transform 0.1s ease-in-out,
+    background-color 0.1s ease-in-out;
+
+  &:active {
+    box-shadow: inset 0px 1px 3px 2px $color-shadow;
+    transform: translateY(2px);
+  }
+
+  // Стили по умолчанию (primary)
+  &--primary {
+    background-color: rgb(165, 110, 43);
+
+    &:active {
+      background-color: rgba(119, 119, 119, 0.721);
+    }
+  }
+
+  // Второй вариант (secondary)
+  &--secondary {
+    background-color: #1e1e1e;
+
+    &:active {
+      background-color: #2a2a2a;
+    }
+  }
+
+  // Третий вариант (danger)
+  &--danger {
+    background-color: #ff3b30;
+
+    &:active {
+      background-color: #cc2e24;
+    }
+  }
+}
+
+// TODO добавить переменные для цветов

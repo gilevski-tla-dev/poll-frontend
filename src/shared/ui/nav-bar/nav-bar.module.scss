@@ -7,10 +7,11 @@
   left: $space-3;
   right: $space-3;
   z-index: 1000;
-  border-radius: 30px;
+  padding: 4px;
+  border-radius: 100px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background-color: rgba(95, 95, 95, 0.414);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -21,6 +22,37 @@
 
   transition: transform 0.3s ease, opacity 0.3s ease;
   will-change: transform;
+
+  .elem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100px;
+    height: 100%;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+    p {
+      font-size: 13px;
+    }
+
+    &:not(.selected) {
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    &.selected {
+      background-color: $color-bg;
+      box-shadow: 1px 1px 12px #0000004b, -1px -1px 12px #0000004b;
+    }
+  }
 }
 
 .hidden {

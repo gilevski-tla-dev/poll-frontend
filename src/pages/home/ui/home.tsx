@@ -1,4 +1,4 @@
-import { MainLayout, NavBar } from "@/shared/ui";
+import { MainLayout } from "@/shared/ui";
 import styles from "./home.module.scss";
 import { PollCard } from "@/entities/poll";
 import { useGetPolls } from "@/entities/poll/hooks/use-get-polls";
@@ -22,7 +22,6 @@ const Home = () => {
           )}
         </div>
       </MainLayout>
-      <NavBar />
     </>
   );
 };
