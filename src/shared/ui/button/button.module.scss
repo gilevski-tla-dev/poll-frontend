@@ -14,9 +14,15 @@
   transition: box-shadow 0.1s ease-in-out, transform 0.1s ease-in-out,
     background-color 0.1s ease-in-out;
 
-  &:active {
+  &:not(:disabled):active {
     box-shadow: inset 0px 1px 3px 2px $color-shadow;
     transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
   }
 
   // Стили по умолчанию (primary)

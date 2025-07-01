@@ -3,6 +3,7 @@ import { useAuthStore } from "@/entities/auth/model/store";
 import { getInitData, isTelegramAvailable } from "@/shared/lib/telegram/webapp";
 import { useEffect, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
+import { initInterceptors } from "@/shared/api/interceptors";
 
 interface Props {
   children: ReactNode;
@@ -14,6 +15,8 @@ export const AppInitProvider = ({ children }: Props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    initInterceptors();
+
     const isAvailable = isTelegramAvailable();
 
     if (!isAvailable) {
@@ -23,6 +26,8 @@ export const AppInitProvider = ({ children }: Props) => {
       return;
     }
     const initData = getInitData();
+    console.log("initData", initData);
+
     let isMounted = true;
 
     const initAuth = async () => {

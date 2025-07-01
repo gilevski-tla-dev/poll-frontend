@@ -1,10 +1,12 @@
-import { useAuthStore } from "@/entities/auth/model/store";
 import { api } from "../instance";
 
 export const initAuthInterceptor = () => {
   // Request interceptor - добавляет токен к запросам
   api.interceptors.request.use((config) => {
-    const accessToken = useAuthStore((state) => state.accessToken);
+    const authData = localStorage.getItem("auth");
+    const accessToken = authData
+      ? JSON.parse(authData).state.accessToken
+      : null;
 
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;

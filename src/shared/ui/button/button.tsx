@@ -4,7 +4,7 @@ import styles from "./button.module.scss";
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
-  variant: "primary" | "secondary" | "danger" | "disabled";
+  variant?: "primary" | "secondary" | "danger" | "disabled";
   className?: string;
 };
 
