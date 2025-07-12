@@ -1,13 +1,16 @@
 import styles from "./question-card.module.scss";
 import burger from "@/shared/assets/burger.svg";
 
-export const QuestionCard = () => {
+interface QuestionCardProps {
+  text: string;
+}
+
+export const QuestionCard = ({ text }: QuestionCardProps) => {
   return (
     <div className={styles.card}>
-      <p className={styles.title}>Какой твой любимый цвет?</p>
-
+      <p className={styles.title}>{text}</p>
       <div className={styles.dnd_button}>
-        <img src={burger} alt="=" />
+        <img src={burger} alt="≡" />
       </div>
     </div>
   );
