@@ -3,12 +3,14 @@ import { Button, Input, Textarea } from "@/shared/ui";
 import Cropper from "react-easy-crop";
 import styles from "./create-poll-form.module.scss";
 import { useCreatePollForm } from "../model/use-create-poll-form";
+import { useNotification } from "@/features/notification";
 
 export const CreatePollForm = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
+  const { notify } = useNotification();
 
   const {
     register,
@@ -21,10 +23,19 @@ export const CreatePollForm = () => {
     console.log("Form errors:", errors.description?.message);
   }, [errors]);
 
-  const onSubmit = (data: unknown) => {
-    console.log("Submit form", data);
-    // TODO: Отправка на API
-  };
+  const onSubmit = handleSubmit(
+    () => {
+      notify("Опрос успешно создан", "success");
+    },
+    (errors) => {
+      if (errors.title) {
+        notify("Введите корректный заголовок\n(не менее 3 символов)", "danger");
+      }
+      if (errors.description) {
+        notify("Введите корректное описание\n(не менее 5 символов)", "danger");
+      }
+    }
+  );
 
   const handleButtonClick = () => {
     fileInputRef.current?.click();
@@ -51,7 +62,7 @@ export const CreatePollForm = () => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form} onSubmit={onSubmit}>
       <Input
         className={styles.input}
         placeholder="Название"

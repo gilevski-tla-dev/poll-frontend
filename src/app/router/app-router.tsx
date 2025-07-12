@@ -9,6 +9,9 @@ import { navItems } from "./nav-items";
 const Home = lazy(() => import("@/pages/home/ui/home"));
 const PollDetail = lazy(() => import("@/pages/poll-detail/ui/poll-detail"));
 const CreatePoll = lazy(() => import("@/pages/create-poll/ui/create-poll"));
+const QuestionList = lazy(
+  () => import("@/pages/question-list/ui/question-list")
+);
 
 const AppRouter = () => {
   return (
@@ -20,6 +23,7 @@ const AppRouter = () => {
             <Route path="/poll/:id" element={<PollDetail />} />
             <Route path="/not-telegram" element={<NotTelegram />} />
             <Route path="/create-poll" element={<CreatePoll />} />
+            <Route path="/question-list" element={<QuestionList />} />
           </Routes>
           <NavBar items={navItems} />
         </Suspense>
