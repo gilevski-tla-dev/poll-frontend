@@ -1,9 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Button, Input, Textarea } from "@/shared/ui";
 import Cropper from "react-easy-crop";
 import styles from "./create-poll-form.module.scss";
 import { useCreatePollForm } from "../model/use-create-poll-form";
 import { useNotification } from "@/features/notification";
+import { useCreatePoll } from "@/entities/poll/hooks/use-create-poll";
+import { useNavigate } from "react-router-dom";
 
 export const CreatePollForm = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -11,6 +13,8 @@ export const CreatePollForm = () => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const { notify } = useNotification();
+  const { mutate: createPoll, isPending } = useCreatePoll();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -19,13 +23,16 @@ export const CreatePollForm = () => {
     formState: { errors },
   } = useCreatePollForm();
 
-  useEffect(() => {
-    console.log("Form errors:", errors.description?.message);
-  }, [errors]);
-
   const onSubmit = handleSubmit(
-    () => {
-      notify("Опрос успешно создан", "success");
+    (formData) => {
+      createPoll(formData, {
+        onSuccess: () => {
+          navigate("/question-list");
+        },
+        onError: () => {
+          notify("Произошла ошибка при создании опроса", "danger");
+        },
+      });
     },
     (errors) => {
       if (errors.title) {
@@ -88,6 +95,7 @@ export const CreatePollForm = () => {
         variant="secondary"
         onClick={handleButtonClick}
         type="button"
+        disabled={isPending}
       >
         Загрузить фото
       </Button>
@@ -119,14 +127,20 @@ export const CreatePollForm = () => {
             variant="danger"
             type="button"
             onClick={handleRemoveImage}
+            disabled={isPending}
           >
             Удалить
           </Button>
         </>
       )}
 
-      <Button className={styles.create_button} variant="primary" type="submit">
-        Создать опрос
+      <Button
+        className={styles.create_button}
+        variant="primary"
+        type="submit"
+        disabled={isPending}
+      >
+        {isPending ? "Создание..." : "Создать опрос"}
       </Button>
     </form>
   );
