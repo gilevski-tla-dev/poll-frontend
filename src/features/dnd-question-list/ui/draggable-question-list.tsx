@@ -1,36 +1,19 @@
-import { useState } from "react";
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-  type DropResult,
-} from "@hello-pangea/dnd";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { QuestionCard } from "@/entities/question";
 import styles from "./dragable-question-list.module.scss";
+import type { Question } from "@/entities/question/types/question";
 
-type Question = {
-  id: string;
-  text: string;
+type Props = {
+  questions: Question[];
 };
 
-export const DragableQuestionList = () => {
-  const [questions, setQuestions] = useState<Question[]>([
-    { id: "1", text: "Какой твой любимый цвет?" },
-    { id: "2", text: "Как тебя зовут?" },
-    { id: "3", text: "Сколько тебе лет?" },
-    { id: "4", text: "Где ты живешь?" },
-  ]);
-
+export const DragableQuestionList = ({ questions }: Props) => {
   // Обработчик завершения перетаскивания
-  const handleDragEnd = (result: DropResult) => {
-    if (!result.destination) return; // Если элемент не перемещен в допустимую область
+  const handleDragEnd = () => {};
 
-    const newQuestions = [...questions];
-    const [removed] = newQuestions.splice(result.source.index, 1);
-    newQuestions.splice(result.destination.index, 0, removed);
-
-    setQuestions(newQuestions);
-  };
+  if (!questions) {
+    return <div>dsad</div>;
+  }
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
@@ -53,7 +36,7 @@ export const DragableQuestionList = () => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                   >
-                    <QuestionCard text={question.text} />
+                    <QuestionCard text={question.title} />
                   </div>
                 )}
               </Draggable>

@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties, type FC } from "react";
 import { useNotificationStore } from "../model/store";
-import styles from "./Notification.module.scss";
+import styles from "./notification.module.scss";
 import { clsx } from "clsx";
 
 export const Notifications: FC = () => {

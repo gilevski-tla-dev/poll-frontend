@@ -4,7 +4,7 @@ import { PollCard } from "@/entities/poll";
 import { useGetPolls } from "@/entities/poll/hooks/use-get-polls";
 import { type Poll } from "@/entities/poll/model/store";
 
-const Home = () => {
+export const Home = () => {
   const { isLoading, data } = useGetPolls();
 
   return (
@@ -25,5 +25,3 @@ const Home = () => {
     </>
   );
 };
-
-export default Home;
