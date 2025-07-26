@@ -1,25 +1,31 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { NotTelegram } from "@/pages/not-telegram";
 import { AppInitProvider } from "@/app/providers/app-init-provider";
-import { NavBar } from "@/shared/ui";
+import { NavBarLayout } from "@/shared/ui";
 import { navItems } from "./nav-items";
 import { CreatePoll } from "@/pages/create-poll";
 import { Home } from "@/pages/home";
 import { PollDetail } from "@/pages/poll-detail";
 import { QuestionList } from "@/pages/question-list";
+import { CreateQuestion } from "@/pages/create-question";
 
 const AppRouter = () => {
   return (
     <Router>
       <AppInitProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route element={<NavBarLayout items={navItems} />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/create-poll" element={<CreatePoll />} />
+          </Route>
           <Route path="/poll/:id" element={<PollDetail />} />
           <Route path="/not-telegram" element={<NotTelegram />} />
-          <Route path="/create-poll" element={<CreatePoll />} />
-          <Route path="/question-list/:poll-id" element={<QuestionList />} />
+          <Route path="/question-list/:pollId" element={<QuestionList />} />
+          <Route
+            path="/question-list/:pollId/question"
+            element={<CreateQuestion />}
+          />
         </Routes>
-        <NavBar items={navItems} />
       </AppInitProvider>
     </Router>
   );

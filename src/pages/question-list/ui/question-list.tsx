@@ -1,4 +1,4 @@
-import { FullScreenLayout } from "@/shared/ui";
+import { Button, FullScreenLayout } from "@/shared/ui";
 import styles from "./question-list.module.scss";
 import { DragableQuestionList } from "@/features/dnd-question-list";
 import { useGetQuestionsByPoll } from "@/entities/question/hooks/use-get-questions-by-poll";
@@ -13,14 +13,20 @@ export const QuestionList = () => {
 
   const { data, isLoading, error } = useGetQuestionsByPoll(pollId);
 
-  if (isLoading) return <h1>321</h1>;
   if (error) return <h1>321</h1>;
-  if (!data) return <h1>Даты нет</h1>;
+  if (!data) return <h1>321</h1>;
 
+  // const is = true
   return (
     <FullScreenLayout>
       <h1 className={styles.title}>Список вопросов</h1>
-      <DragableQuestionList questions={data} />
+      <DragableQuestionList questions={data} isLoading={isLoading} />
+      <div className={styles.buttons}>
+        <Button variant="secondary" className={styles.add_button}>
+          +
+        </Button>
+        <Button>Создать опрос</Button>
+      </div>
     </FullScreenLayout>
   );
 };

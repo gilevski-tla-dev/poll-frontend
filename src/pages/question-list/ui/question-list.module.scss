@@ -1,4 +1,16 @@
 .title {
   font-weight: 500;
   font-size: 32px;
+  margin-bottom: 46px;
+  margin-left: 12px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+
+  .add_button {
+    font-size: 40px;
+  }
 }

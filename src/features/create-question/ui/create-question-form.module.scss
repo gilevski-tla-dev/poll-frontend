@@ -1,0 +1,25 @@
+.question {
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 23px;
+  font-weight: 400;
+  margin-top: 32px;
+  margin-bottom: 13px;
+}
+
+.answer_list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .answer {
+    display: flex;
+    align-items: center;
+
+    .checkbox {
+      margin: 0 16px;
+    }
+  }
+}

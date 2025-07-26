@@ -6,3 +6,6 @@ export { Pollik } from "./pollik/pollik";
 export { Input } from "./input/input";
 export { Button } from "./button/button";
 export { Textarea } from "./textarea/textarea";
+export { NavBarLayout } from "./layouts/nav-bar-layout/nav-bar-layout";
+export { DropdownList } from "./dropdown-list/dropdown-list";
+export { Checkbox } from "./checkbox/checkbox";

@@ -26,8 +26,8 @@ export const CreatePollForm = () => {
   const onSubmit = handleSubmit(
     (formData) => {
       createPoll(formData, {
-        onSuccess: () => {
-          navigate("/question-list");
+        onSuccess: (response) => {
+          navigate(`/question-list/${response.id}`);
         },
         onError: () => {
           notify("Произошла ошибка при создании опроса", "danger");

@@ -1,26 +1,36 @@
-import { api } from "@/shared/api/instance";
+  import { api } from "@/shared/api/instance";
 
-export interface CreatePollFormData {
-  title: string;
-  description: string;
-  image?: File | null;
-}
+  export type CreatePollFormData = {
+    title: string;
+    description: string;
+    image?: File | null;
+  };
 
-export const postPoll = async (formData: CreatePollFormData) => {
-  const data = new FormData();
+  export type PollResponse = {
+    id: string;
+    title: string;
+    description: string;
+    image: string;
+    userId: string;
+  };
 
-  data.append("title", formData.title);
-  data.append("description", formData.description);
+  export const postPoll = async (
+    formData: CreatePollFormData
+  ): Promise<PollResponse> => {
+    const data = new FormData();
 
-  if (formData.image) {
-    data.append("image", formData.image);
-  }
+    data.append("title", formData.title);
+    data.append("description", formData.description);
 
-  const response = await api.post(`/poll`, data, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+    if (formData.image) {
+      data.append("image", formData.image);
+    }
 
-  return response.data;
-};
+    const response = await api.post<PollResponse>(`/poll`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return response.data;
+  };
