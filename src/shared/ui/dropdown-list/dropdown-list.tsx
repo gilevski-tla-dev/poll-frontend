@@ -5,9 +5,10 @@ import clsx from "clsx";
 
 type Props = {
   options: string[];
+  onSelect?: (option: string) => void;
 };
 
-export const DropdownList = ({ options }: Props) => {
+export const DropdownList = ({ options, onSelect }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
@@ -15,6 +16,7 @@ export const DropdownList = ({ options }: Props) => {
   const handleSelect = (option: string) => {
     setSelected(option);
     setIsOpen(false);
+    onSelect?.(option);
   };
 
   return (
